@@ -4,9 +4,9 @@ class Cat {
     #tiredness;
 
     constructor() {
-        this.#hunger = 0;
-        this.#lonliness = 0;
-        this.#tiredness = 0;
+        this.#hunger = 5;
+        this.#lonliness = 5;
+        this.#tiredness = 5;
     }
 
     getStatus() {
@@ -129,6 +129,29 @@ class Cat {
 const c1 = new Cat();
 const c2 = new Cat();
 
+Cat.feetMultiple(c1, c2);
+Cat.feetMultiple(c1, c2);
+Cat.feetMultiple(c1, c2);
+Cat.feetMultiple(c1, c2);
+
+c1.sleep();
+c1.sleep();
+c1.sleep();
+c1.sleep();
+c1.sleep();
+
+c2.sleep();
+c2.sleep();
+c2.sleep();
+c2.sleep();
+c2.sleep();
+c2.sleep();
+
 c1.fight();
+c2.fight();
+
+c1.fight();
+c2.fight();
 
 console.log(c1.getStatus());
+console.log(c2.getStatus());

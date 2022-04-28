@@ -1,0 +1,21 @@
+1. Muestra 2
+
+2. Muetra 1 y luego 2
+
+3. Muestra 1 y luego undefined
+
+4. Muestra 3
+
+5. if(age <= 90 && age >= 14) {}
+
+6. Muestra 2 y luego undefined
+
+7. First, third
+
+8. Muestra Anonymous
+
+9. Supercoder
+
+10. Greetings!
+
+11. true, false, true, true, false, false, false

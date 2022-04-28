@@ -1,5 +1,5 @@
 //1
-const array = [3,'a','a','a',2,3,'a',3,'a',2,4,9,4,4,4,4,4,4,4];
+const array = [3,'a','a','a',2,3,'a',3,'a',2,4,9,9,9,9,9,9,9];
 
 const result = array.reduce((carry = array[0], ai) => {
     return (array.filter(aj => aj === carry).length >= array.filter(aj => aj === ai).length)
