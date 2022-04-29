@@ -5,22 +5,19 @@ class HttpError extends Error {
         this.response = response;
     }
 }
-async function loadJson(url) {
-    let response = await fetch(url);
-    if(response.status == 200) {
-        return response.json();
-    } else {
-        throw new HttpError(response);
-    }
 
-    // return fetch(url)
-    //         .then(response => {
-    //             if (response.status == 200) {
-    //                 return response.json();
-    //             } else {
-    //                 throw new HttpError(response);
-    //             }
-    //         });
+async function loadJson(url) {
+    try {
+        let response = await fetch(url);
+        if(response.status == 200) {
+            let data = await response.json();
+            return data.login;
+        } else {
+            throw new HttpError(response);
+        }
+    } catch(err) {
+        throw new Error(err);
+    }
 }
     
 async function demoGithubUser() {
@@ -28,7 +25,7 @@ async function demoGithubUser() {
     
     try {
         let response = await loadJson(`https://api.github.com/users/${name}`);
-        alert(`Full name: ${user.name}.`);
+        alert(`Full name: ${response}.`);
         return response;
     } catch(err) {
         if (err instanceof HttpError && err.response.status == 404) {
@@ -38,18 +35,5 @@ async function demoGithubUser() {
             throw err;
         }
     }
-
-    // return loadJson(`https://api.github.com/users/${name}`).then(user => {
-    //     alert(`Full name: ${user.name}.`);
-    //     return user;
-    // })
-    // .catch(err => {
-    //     if (err instanceof HttpError && err.response.status == 404) {
-    //         alert("No such user, please reenter.");
-    //         return demoGithubUser();
-    //     } else {
-    //         throw err;
-    //     }
-    // });
 }
 demoGithubUser();
