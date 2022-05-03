@@ -9,6 +9,14 @@
     5.5 El event loop verifica que la call stack esta vacia y luego pasa a revisar la callback queue
     6. La callback cb pasa de la callback queue a la call stack y luego sale (accion del event loop)
     7. Lacallback cb1 pasa de la callback queue a la call stack y luego sale (accion del event loop)
+
+    Resultado
+    ---------
+    This is the start
+    This is just a message
+    This is the end       
+    From call back        
+    This is a msg
 */
 
 (function() {
