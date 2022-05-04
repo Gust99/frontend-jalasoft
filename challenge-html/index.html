@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width,initial-scale=1.0'>
+        <title>Web Component Bootcamp</title>
+    </head>
+    <body>
+        <jala-card id="Hirotaka" image="https://static.wikia.nocookie.net/wotaku-ni-koi-wa-muzukashii/images/2/22/348857.jpg/revision/latest?cb=20180606021302" name="Hirotaka Nifuji" job="Developer"></jala-card>
+        
+        <template id="userCardTemplate">
+            <style>
+                :host {
+                    display: flex;
+                    overflow: hidden;
+                    padding: 10px;
+                    box-sizing: border-box;
+                    font-family: 'Poppins', sans-serif;
+                }/*
+                .image {
+                    flex: 0 0 auto;
+                    width: 160px;
+                    height: 160px;
+                    vertical-align: middle;
+                    border-radius: 5px;
+                }
+                .container {
+                    display: flex;
+                    flex: 0.5;
+                    align-items: center;
+                    flex-direction: column;
+                    border: 1px solid #d5d5d5;
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+                    border-radius: 3px;
+                    background-color: #d4d4d4;
+                    box-sizing: border-box;
+                    padding: 20px;
+                }
+                .container > .name {
+                    font-size: 20px;
+                    font-weight: 600;
+                    line-height: 1;
+                    margin: 0;
+                    margin-bottom: 5px;
+                } */
+            </style>
+            
+            <div class="container">
+                <div class="top">
+                    <img src="" class="jala">
+                </div>
+                <div class="main-data">
+                    <img src="" class="image">
+                    <p class="name"></p>
+                </div>
+                <div class="second-data">
+                    <p class="job"></p>
+                </div>
+            </div>
+        </template>
+        <script>
+            class JalaId extends HTMLElement {
+                constructor() {
+                    super();
+                    var shadow = this.attachShadow( { mode: 'closed' } );
+                    var templateElem = document.getElementById('userCardTemplate');
+                    var content = templateElem.content.cloneNode(true);
+
+                    let styles = document.createElement('link');
+                    styles.setAttribute('rel', 'stylesheet');
+                    styles.setAttribute('href', './style.css');
+                    
+                    shadow.appendChild(styles);
+
+                    let jalasoftUrl = "https://jalasoft.com/img/logo-jalasoft.svg";
+                    content.querySelector('img.jala').setAttribute('src', jalasoftUrl);
+
+                    content.querySelector('img.image').setAttribute('src', this.getAttribute('image'));
+                    content.querySelector('.container>.main-data>.name').innerText = this.getAttribute('name');
+                    content.querySelector('.container>.second-data>p.job').innerText = this.getAttribute('job');
+
+                    shadow.appendChild(content);
+                }
+            }
+            customElements.define('jala-card', JalaId);
+        </script>
+    </body>
+</html>

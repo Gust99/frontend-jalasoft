@@ -1,0 +1,31 @@
+.container {
+    border: 4px solid black;
+    display: flex;
+    flex-flow: column;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+img {
+    border-radius: 25px;
+    height: 300px;
+    width: auto;
+}
+.main-data {
+    background-color: black;
+    padding: 10px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 30px;
+}
+.second-data {
+    width: 100%;
+    background-color: red;
+    text-align: center;
+    font-weight: 800;
+    font-size: 30px;
+}
+img.jala {
+    width: 100%;
+    height: auto;
+}
