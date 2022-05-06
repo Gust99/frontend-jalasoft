@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
 }
-img {
+img.image {
     border-radius: 25px;
     height: 300px;
     width: auto;
