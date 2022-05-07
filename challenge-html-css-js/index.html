@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="all-container"></div>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
 
-    <template id="PokemonCardTemplate">
-        <div class="single-container">
-            <img src="" class="image">
-            <p class="name"></p>
-        </div>
-    </template>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 
-    <script src="./utils.js"></script>
-    <script src="./PokemonCardComponent.js"></script>
-</body>
+            body * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: 'Poppins';
+            }
+
+            .all-container {
+                display: flex;
+                margin: auto;
+                justify-content: center;
+                align-content: center;
+                flex-flow: row wrap;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="all-container"></div>
+
+        <template id="PokemonCardTemplate">
+            <div class="single-container">
+                <img src="" class="image">
+                <p class="name"></p>
+            </div>
+        </template>
+        
+        <script src="./utils.js"></script>
+        <script src="./PokemonCardComponent.js"></script>
+    </body>
 </html>

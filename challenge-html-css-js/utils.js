@@ -267,20 +267,18 @@ function getPokemonImageUri (id) {
 
 const container = document.querySelector('.all-container');
 
-fetch(dataPokemons.next)
-.then(res => res.json())
-.then(json => {
-  json.results.forEach(pokemon => {
-    let pokmeonContainer = document.createElement('pokemon-card');
-
-    let pokemonID = pokemon.url.split('/');
-    pokemonID = pokemonID[pokemonID.length-2];
-    
-    pokmeonContainer.setAttribute('img',getPokemonImageUri(pokemonID));
-    pokmeonContainer.setAttribute('name', pokemon.name);
-    
-    pokmeonContainer.style.backgroundColor = `${pokemonColorMap[pokemonID]}`;
-
-    container.appendChild(pokmeonContainer);
+function renderTopPokemons() {
+  fetch(dataPokemons.next)
+  .then(res => res.json())
+  .then(json => {
+    json.results.forEach(createPokemonContainer);
   });
-});
+}
+
+function createPokemonContainer(pokemon, index) {
+  let pokmeonContainer = new PokemonCard(getPokemonImageUri(index + 1), pokemon.name, pokemonColorMap[index + 1]);
+
+  container.appendChild(pokmeonContainer);
+}
+
+renderTopPokemons();
