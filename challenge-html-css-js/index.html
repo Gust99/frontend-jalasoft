@@ -29,13 +29,24 @@
         <div class="all-container"></div>
 
         <template id="PokemonCardTemplate">
-            <div class="single-container">
+            <div class="single-container" data-modal="modal">
                 <img src="" class="image">
                 <p class="name"></p>
             </div>
+
+            <div class="modal" id="modal">
+                <div class="modal-bg modal-exit"></div>
+                <div class="modal-container">
+                    <p class="name"></p>
+                    <div class="abilities"></div>
+                    <div class="stats"></div>
+                    <button class="modal-close modal-exit">X</button>
+                </div>
+            </div>
         </template>
         
-        <script src="./utils.js"></script>
+        <script type="module" src="./utils.js"></script>
+        <script type="module" src="./script.js"></script>
         <script src="./PokemonCardComponent.js"></script>
     </body>
 </html>

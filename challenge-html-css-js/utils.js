@@ -265,20 +265,4 @@ function getPokemonImageUri (id) {
   return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${imageId}.png`;
 }
 
-const container = document.querySelector('.all-container');
-
-function renderTopPokemons() {
-  fetch(dataPokemons.next)
-  .then(res => res.json())
-  .then(json => {
-    json.results.forEach(createPokemonContainer);
-  });
-}
-
-function createPokemonContainer(pokemon, index) {
-  let pokmeonContainer = new PokemonCard(getPokemonImageUri(index + 1), pokemon.name, pokemonColorMap[index + 1]);
-
-  container.appendChild(pokmeonContainer);
-}
-
-renderTopPokemons();
+export { pokemonColorMap, dataPokemons, getPokemonImageUri };

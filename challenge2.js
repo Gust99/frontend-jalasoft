@@ -11,6 +11,7 @@ async function loadJson(url) {
         let response = await fetch(url);
         if(response.status == 200) {
             let data = await response.json();
+            console.log(data);
             return data.login;
         } else {
             throw new HttpError(response);
