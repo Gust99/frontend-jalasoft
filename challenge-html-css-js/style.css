@@ -11,6 +11,9 @@
     font-weight: 800;
     color: white;
 }
+.single-container:hover {
+    cursor: pointer;
+}
 
 
 
@@ -58,5 +61,9 @@
 }
 .modal .name {
     text-align: center;
+    font-weight: bolder;
+    font-size: large;
+}
+.modal .abilities p, .modal .stats p {
     font-weight: bolder;
 }

@@ -53,7 +53,7 @@ function formatStats(stats) {
     statsHTML += "<ul>";
 
     stats.forEach(stat => {
-        statsHTML += `<li class='ability'>${stat.stat.name}: ${stat.base_stat}</li>`;
+        statsHTML += `<li class='ability'><strong>${stat.stat.name}:</strong> ${stat.base_stat}</li>`;
     });
 
     statsHTML += "</ul>";
