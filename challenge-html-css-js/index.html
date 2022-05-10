@@ -22,11 +22,44 @@
                 justify-content: center;
                 align-content: center;
                 flex-flow: row wrap;
+                grid-area: pokedex;
+            }
+
+            .grid {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(8, 1fr);
+                grid-template-rows: auto;
+                grid-template-areas: 
+                "header header header header header header header header"
+                ". pokedex pokedex pokedex pokedex pokedex pokedex ."
+                "footer footer footer footer footer footer footer footer";
+            }
+            .header {
+                grid-area: header;
+                padding: 20px;
+                box-shadow: 0px 0px 8px rgba(0,0,0,.3);
+                
+            }
+            .footer {
+                grid-area: footer;
+                background-color: lightblue;
+                padding: 20px;
             }
         </style>
     </head>
     <body>
-        <div class="all-container"></div>
+
+        <div class="grid">
+            <header class="header">
+                <span>LOGO</span>
+                <span>POKEDEX</span>
+            </header>
+            <div class="all-container"></div>
+            <footer class="footer">
+                <span>Footer</span>
+            </footer>
+        </div>
 
         <template id="PokemonCardTemplate">
             <div class="single-container" data-modal="modal">

@@ -3,11 +3,12 @@ import { pokemonColorMap, dataPokemons, getPokemonImageUri } from './utils.js';
 const container = document.querySelector('.all-container');
 
 function renderTopPokemons() {
-    fetch(dataPokemons.next)
-    .then(res => res.json())
-    .then(json => {
-        json.results.forEach(createPokemonContainer);
-    });
+    dataPokemons.results.forEach(createPokemonContainer);
+    // fetch(dataPokemons.next)
+    // .then(res => res.json())
+    // .then(json => {
+    //     json.results.forEach(createPokemonContainer);
+    // });
 }
 
 async function createPokemonContainer(pokemon, index) {
