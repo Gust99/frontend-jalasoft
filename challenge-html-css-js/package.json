@@ -1,0 +1,15 @@
+{
+  "name": "challenge-html-css",
+  "version": "1.0.0",
+  "description": "",
+  "main": "PokemonCardComponent.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "lessc style.less style.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "less": "^4.1.2"
+  }
+}

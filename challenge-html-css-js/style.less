@@ -1,0 +1,80 @@
+#generals() {
+    color1: white;
+    exit: red;
+    default_cover: rgba(0, 0, 0, .3);
+    bold_weight: 800;
+}
+
+.single-container {
+    width: auto;
+    height: auto;
+    border-radius: 25px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    font-weight: #generals[bold_weight];
+    color: #generals[color1];
+}
+.single-container:hover {
+    cursor: pointer;
+}
+
+
+
+.modal {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .name {
+        text-align: center;
+        font-weight: bolder;
+        font-size: large;
+    }
+
+    .abilities, .stats {
+        p {
+            font-weight: bolder;
+        }
+    }
+}
+.modal.open {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
+.modal-bg {
+    position: absolute;
+    background: #generals[default_cover];
+    width: 100%;
+    height: 100%;
+}
+.modal-container {
+    border-radius: 10px;
+    background: #generals[color1];
+    position: relative;
+    padding: 30px;
+}
+.modal-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    outline: none;
+    appearance: none;
+    color: #generals[exit];
+    background: none;
+    border: 0px;
+    font-weight: bold;
+    cursor: pointer;
+}
