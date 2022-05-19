@@ -4,12 +4,15 @@
   "description": "",
   "main": "PokemonCardComponent.js",
   "scripts": {
+    "preinstall": "node guard.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-css": "lessc style.less style.css"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "less": "^4.1.2"
+    "less": "^4.1.2",
+    "npx": "^10.2.2",
+    "yarn": "^1.22.18"
   }
 }
