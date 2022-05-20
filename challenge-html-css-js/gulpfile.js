@@ -5,25 +5,18 @@ const concat = require('gulp-concat');
 const clean = require('gulp-clean');
 
 function cleanify(cb) {
+    gulp.src('./dist-gulp',{"allowEmpty": true})
+        .pipe(clean({force: true}));
+
+    cb();
+}
+
+function build(cb) {
     gulp.src('./!(gulpfile|Gruntfile).js')
-        .pipe(clean({force: true}))
-        .pipe(gulp.dest('./js'));
-
-    cb();
-}
-
-function concatify(cb) {
-    gulp.src('./js/*.js',{"allowEmpty": true})
         .pipe(concat('all.js'))
-        .pipe(gulp.dest('./dist-gulp/all-js'));
-    
-    cb();
-}
-
-function uglifyScripts(cb) {
-    gulp.src('./dist-gulp/all-js/all.js',{"allowEmpty": true})
+        .pipe(gulp.dest('./dist-gulp/js'))
         .pipe(uglify())
-        .pipe(gulp.dest('./dist-gulp/final'));
+        .pipe(gulp.dest('./dist-gulp/min-js'));
     
     cb();
 }
@@ -36,12 +29,4 @@ function lessglify(cb) {
     cb();
 }
 
-function defaultTask(cb) {
-    // cleanify(cb);
-    // concatify(cb);
-    // uglifyScripts(cb);
-    // lessglify(cb);
-    // cb();
-}
-
-exports.default = gulp.series(cleanify,concatify,uglifyScripts,lessglify);
+exports.default = gulp.series(cleanify,gulp.parallel(build,lessglify));
