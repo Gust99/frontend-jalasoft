@@ -13,6 +13,16 @@
   "dependencies": {
     "less": "^4.1.2",
     "npx": "^10.2.2",
-    "yarn": "^1.22.18"
+    "yarn": "latest"
+  },
+  "devDependencies": {
+    "grunt": "^1.5.3",
+    "grunt-contrib-uglify": "^5.2.1",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^5.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2"
   }
 }
