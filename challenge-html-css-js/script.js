@@ -1,4 +1,4 @@
-import { pokemonColorMap, dataPokemons, getPokemonImageUri } from './utils.js';
+// import { pokemonColorMap, dataPokemons, getPokemonImageUri } from './utils.js';
 
 const container = document.querySelector('.all-container');
 

@@ -8,7 +8,7 @@ class PokemonCard extends HTMLElement {
   
         let styles = document.createElement('link');
         styles.setAttribute('rel', 'stylesheet');
-        styles.setAttribute('href', './style.css');
+        styles.setAttribute('href', './dist-gulp/css/all.css');
         
         shadow.appendChild(styles);
 

@@ -265,4 +265,4 @@ function getPokemonImageUri (id) {
   return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${imageId}.png`;
 }
 
-export { pokemonColorMap, dataPokemons, getPokemonImageUri };
+// export { pokemonColorMap, dataPokemons, getPokemonImageUri };
