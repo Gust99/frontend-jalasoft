@@ -1,4 +1,7 @@
-// import { pokemonColorMap, dataPokemons, getPokemonImageUri } from './utils.js';
+import { pokemonColorMap, dataPokemons, getPokemonImageUri } from './utils.js';
+import { PokemonCard } from './PokemonCardComponent';
+
+customElements.define('pokemon-card', PokemonCard);
 
 const container = document.querySelector('.all-container');
 

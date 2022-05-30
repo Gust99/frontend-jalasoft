@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <style> 
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+            body * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: 'Poppins';
+            }
+
+            .all-container {
+                display: flex;
+                margin: auto;
+                justify-content: center;
+                align-content: center;
+                flex-flow: row wrap;
+                grid-area: pokedex;
+            }
+
+            .grid {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(8, 1fr);
+                grid-template-rows: auto;
+                grid-template-areas: 
+                "header header header header header header header header"
+                ". pokedex pokedex pokedex pokedex pokedex pokedex ."
+                "footer footer footer footer footer footer footer footer";
+            }
+            .header {
+                grid-area: header;
+                padding: 20px;
+                box-shadow: 0px 0px 8px rgba(0,0,0,.3);
+                
+            }
+            .footer {
+                grid-area: footer;
+                background-color: lightblue;
+                padding: 20px;
+            }
+        </style>
+        <!-- <link rel="stylesheet" type="text/css" href="./styles/style.css"> -->
+    </head>
+    <body>
+        <div class="grid">
+            <header class="header">
+                <span>LOGO</span>
+                <span>POKEDEX</span>
+            </header>
+            <div class="all-container"></div>
+            <footer class="footer">
+                <span>Footer</span>
+            </footer>
+        </div>
+
+        <template id="PokemonCardTemplate">
+            <div class="single-container" data-modal="modal">
+                <img src="" class="image">
+                <p class="name"></p>
+            </div>
+
+            <div class="modal" id="modal">
+                <div class="modal-bg modal-exit"></div>
+                <div class="modal-container">
+                    <p class="name"></p>
+                    <div class="abilities"></div>
+                    <div class="stats"></div>
+                    <button class="modal-close modal-exit">X</button>
+                </div>
+            </div>
+        </template>
+
+        <!-- <script src="./scripts/PokemonCardComponent.js"></script>
+        <script src="./scripts/utils.js" type="module"></script>
+        <script src="./scripts/script.js" type="module"></script> -->
+    </body>
+</html>

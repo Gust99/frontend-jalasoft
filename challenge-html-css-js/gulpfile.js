@@ -5,17 +5,19 @@ const concat = require('gulp-concat');
 const clean = require('gulp-clean');
 const uglifycss = require('gulp-uglifycss');
 const inject = require('gulp-inject');
+const merge = require('merge-stream');
+
 //.pipe(gulp.src('./!(gulpfile|Gruntfile|guard).js',{"allowEmpty": true}))
 function build(cb) {
-    gulp.src('./dist-gulp/*',{allowEmpty: true})
+    const t1 = gulp.src('./dist-gulp',{allowEmpty: true})
         .pipe(clean({force: true}));
 
-    gulp.src(['./PokemonCardComponent.js','./utils.js','./script.js'])
+    const t2 = gulp.src(['./PokemonCardComponent.js','./utils.js','./script.js'])
         .pipe(concat('all.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./dist-gulp/js'));
 
-    gulp.src('./*.less')
+    const t3 = gulp.src('./*.less')
         .pipe(concat('all.less'))
         .pipe(less())
         .pipe(uglifycss())
@@ -23,10 +25,11 @@ function build(cb) {
     
     const sources = gulp.src(['./dist-gulp/js/all.js', './dist-gulp/css/all.css'], {read: false,allowEmpty: true});
 
-    gulp.src('./index.html')
+    const t4 = gulp.src('./index.html')
         .pipe(inject(sources, {relative: true}))
-        .pipe(gulp.dest('.'));
+        .pipe(gulp.dest('./dist-gulp/'));
 
+    return merge(gulp.series(t1,t2,t3,sources,t4));
     cb();
 }
 
@@ -57,4 +60,4 @@ function buildcss(cb) {
 //     cb();
 // }
 
-exports.default = gulp.series(build);
+exports.default = build;

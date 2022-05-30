@@ -1,16 +1,26 @@
-class PokemonCard extends HTMLElement {
+import styles from '../styles/style.less'
+
+export class PokemonCard extends HTMLElement {
     constructor(imgURL, name, color, data) {
         super();
   
         let shadow = this.attachShadow( { mode: 'open' } );
         let templateElem = document.getElementById('PokemonCardTemplate');
+
+        let style = document.createElement('style');
+        style.textContent = styles;
+
+        templateElem.appendChild(style);
+
         let content = templateElem.content.cloneNode(true);
   
-        let styles = document.createElement('link');
-        styles.setAttribute('rel', 'stylesheet');
-        styles.setAttribute('href', './dist-gulp/css/all.css');
-        
-        shadow.appendChild(styles);
+        content.appendChild(style);
+
+        // let styles = document.createElement('link');
+        // styles.setAttribute('rel', 'stylesheet');
+        // styles.setAttribute('href', './dist-gulp/css/all.css');
+
+        shadow.appendChild(style);
 
         content.querySelector('.single-container > img').setAttribute('src', imgURL);
         content.querySelector('.single-container > .name').innerText = name;
@@ -42,5 +52,3 @@ class PokemonCard extends HTMLElement {
         });
     }
 }
-
-customElements.define('pokemon-card', PokemonCard);
