@@ -1,4 +1,4 @@
-import lessStyles from '../styles/style.less';
+import lessStyles from 'Styles/style.less';
 
 export class PokemonCard extends HTMLElement {
     constructor(imgURL, name, color, data) {

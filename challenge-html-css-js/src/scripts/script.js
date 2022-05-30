@@ -1,6 +1,8 @@
 import { pokemonColorMap, dataPokemons, getPokemonImageUri } from './utils.js';
 import { PokemonCard } from './PokemonCardComponent';
 
+let _ = require('lodash');
+
 customElements.define('pokemon-card', PokemonCard);
 
 const container = document.querySelector('.all-container');
