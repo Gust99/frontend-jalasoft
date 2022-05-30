@@ -1,25 +1,20 @@
-import styles from '../styles/style.less'
+import lessStyles from '../styles/style.less';
 
 export class PokemonCard extends HTMLElement {
     constructor(imgURL, name, color, data) {
         super();
   
-        let shadow = this.attachShadow( { mode: 'open' } );
+        let shadow = this.attachShadow({ mode: 'open' });
         let templateElem = document.getElementById('PokemonCardTemplate');
-
-        let style = document.createElement('style');
-        style.textContent = styles;
-
-        templateElem.appendChild(style);
-
         let content = templateElem.content.cloneNode(true);
-  
-        content.appendChild(style);
 
         // let styles = document.createElement('link');
         // styles.setAttribute('rel', 'stylesheet');
         // styles.setAttribute('href', './dist-gulp/css/all.css');
+        // shadow.appendChild(styles);
 
+        let style = document.createElement('style');
+        style.textContent = lessStyles;
         shadow.appendChild(style);
 
         content.querySelector('.single-container > img').setAttribute('src', imgURL);

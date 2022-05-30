@@ -13,8 +13,8 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.less$/,
-                use: ['style-loader','css-loader','less-loader']
+                test: /\.less$/i,
+                use: ['css-loader','less-loader']//'style-loader',
             }
         ]
     },
@@ -24,5 +24,11 @@ module.exports = {
             filename: 'index.html',
             template: 'src/index.html'
         })
-    ]
+    ],
+    optimization: {
+        chunkIds: 'total-size',
+        concatenateModules: true,
+        emitOnErrors: true,
+        innerGraph: true,
+    },
 }
