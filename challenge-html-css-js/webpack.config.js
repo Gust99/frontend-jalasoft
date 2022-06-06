@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: {
@@ -14,8 +15,20 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.less$/i,
+                test: /style\.less$/i,
                 use: ['css-loader','less-loader']//'style-loader',
+            },
+            {
+                test: /generics\.less$/i,
+                use: [MiniCssExtractPlugin.loader,'css-loader','less-loader']
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                  {
+                    loader: 'file-loader',
+                  },
+                ]
             }
         ]
     },
@@ -24,7 +37,8 @@ module.exports = {
             title: 'Pokedex',
             filename: 'index.html',
             template: 'src/index.html'
-        })
+        }),
+        new MiniCssExtractPlugin()
     ],
     resolve: {
         alias: {

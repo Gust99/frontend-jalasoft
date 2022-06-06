@@ -1,9 +1,11 @@
 const { merge } = require('webpack-merge');
 const common = require('./webpack.config');
 const WebpackObfuscator = require('webpack-obfuscator');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = merge(common,{
     mode: 'production',
+
     plugins: [
         new WebpackObfuscator ({
             rotateStringArray: true
@@ -37,5 +39,17 @@ module.exports = merge(common,{
               },
             },
         },
+        minimizer: [
+          new CssMinimizerPlugin({
+            minimizerOptions: {
+              level: {
+                1: {
+                  roundingPrecision: "all=3,px=5",
+                },
+              },
+            },
+            minify: CssMinimizerPlugin.cleanCssMinify,
+          })
+        ]
     }
 });

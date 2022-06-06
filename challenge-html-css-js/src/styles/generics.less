@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+            body * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: 'Poppins';
+            }
+
+            .all-container {
+                display: flex;
+                margin: auto;
+                justify-content: center;
+                align-content: center;
+                flex-flow: row wrap;
+                grid-area: pokedex;
+            }
+
+            .grid {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(8, 1fr);
+                grid-template-rows: auto;
+                grid-template-areas: 
+                "header header header header header header header header"
+                ". pokedex pokedex pokedex pokedex pokedex pokedex ."
+                "footer footer footer footer footer footer footer footer";
+            }
+            .header {
+                grid-area: header;
+                padding: 20px;
+                box-shadow: 0px 0px 8px rgba(0,0,0,.3);
+                
+            }
+            .footer {
+                grid-area: footer;
+                background-color: lightblue;
+                padding: 20px;
+            }
