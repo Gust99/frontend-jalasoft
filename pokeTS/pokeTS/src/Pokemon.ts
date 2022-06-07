@@ -56,8 +56,12 @@ function getNewPokemons<T extends { new(...args: any[]): {} }>(constructor: T) {
   const pokemonsIndex: Number[] = [];
 
   for(let i = 0; i < 3; i++) {
-    const indexValue = Math.round(Math.random() * 100);
+    let indexValue = Math.round(Math.random() * 100);
     
+    while(pokemonsIndex.includes(indexValue)) {
+      indexValue = Math.round(Math.random() * 100);
+    }
+
     pokemonsIndex.push(indexValue);
   }
 
@@ -102,7 +106,11 @@ export class Pokemon {
     let selectedMoves: Move[] = [];
     
     for(let i = 0; i < 4; i++) {
-      const index = Math.round(Math.random() * (moves.length - 1));
+      let index = Math.round(Math.random() * (moves.length - 1));
+      
+      while(selectedMoves.includes(moves[index])) {
+        index = Math.round(Math.random() * (moves.length - 1));
+      }
 
       selectedMoves.push(moves[index]);
     }

@@ -123,6 +123,9 @@ function getNewPokemons(constructor) {
     var pokemonsIndex = [];
     for (var i = 0; i < 3; i++) {
         var indexValue = Math.round(Math.random() * 100);
+        while (pokemonsIndex.includes(indexValue)) {
+            indexValue = Math.round(Math.random() * 100);
+        }
         pokemonsIndex.push(indexValue);
     }
     return /** @class */ (function (_super) {
@@ -154,6 +157,9 @@ var Pokemon = /** @class */ (function () {
         var selectedMoves = [];
         for (var i = 0; i < 4; i++) {
             var index = Math.round(Math.random() * (moves.length - 1));
+            while (selectedMoves.includes(moves[index])) {
+                index = Math.round(Math.random() * (moves.length - 1));
+            }
             selectedMoves.push(moves[index]);
         }
         return selectedMoves;
