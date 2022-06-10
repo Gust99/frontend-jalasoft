@@ -121,7 +121,8 @@ function getPokemonData(pokemonId) {
 exports.getPokemonData = getPokemonData;
 function getNewPokemons(constructor) {
     var pokemonsIndex = [];
-    for (var i = 0; i < 3; i++) {
+    var nPokemons = Math.round(Math.random() * 5 + 1);
+    for (var i = 0; i < nPokemons; i++) {
         var indexValue = Math.round(Math.random() * 100);
         while (pokemonsIndex.includes(indexValue)) {
             indexValue = Math.round(Math.random() * 100);

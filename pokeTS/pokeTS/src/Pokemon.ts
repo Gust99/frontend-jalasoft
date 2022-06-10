@@ -54,8 +54,10 @@ export async function getPokemonData(pokemonId: string | number) {
 
 function getNewPokemons<T extends { new(...args: any[]): {} }>(constructor: T) {
   const pokemonsIndex: Number[] = [];
+  
+  const nPokemons = Math.round(Math.random() * 5 + 1);
 
-  for(let i = 0; i < 3; i++) {
+  for(let i = 0; i < nPokemons; i++) {
     let indexValue = Math.round(Math.random() * 100);
     
     while(pokemonsIndex.includes(indexValue)) {
