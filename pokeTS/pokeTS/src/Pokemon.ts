@@ -152,7 +152,7 @@ export class PokemonTrainer {
   }
 
   async getPokemons() {
-    const listPokemons = this.listOfIds.map(id => getPokemonData(id));
+    const listPokemons = this.listOfIds.map(getPokemonData);
     const results = await Promise.all(listPokemons)
     results.forEach(result => {
       this.pokemons.push(new Pokemon(result));

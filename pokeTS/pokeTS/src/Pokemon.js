@@ -196,7 +196,7 @@ var PokemonTrainer = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        listPokemons = this.listOfIds.map(function (id) { return getPokemonData(id); });
+                        listPokemons = this.listOfIds.map(getPokemonData);
                         return [4 /*yield*/, Promise.all(listPokemons)];
                     case 1:
                         results = _a.sent();

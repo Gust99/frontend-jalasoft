@@ -1,0 +1,18 @@
+
+<div class="container">
+    <input id="newitem" type="text" placeholder="What needs to be done?" (keydown)="addNewItem($event)">
+
+    <hr *ngIf="list.length > 0">
+    
+    <ul>
+        <li class="listItem" *ngFor="let item of list, let i = index">
+            <span hidden>{{ i }}</span>
+            <span>{{ item }}</span>
+            <span class="delete" (click)="deleteItem(i)">x</span>
+        </li>
+    </ul>
+    
+    <hr *ngIf="list.length > 0">
+    
+    <p *ngIf="list.length > 0">{{list.length}}</p>
+</div>
