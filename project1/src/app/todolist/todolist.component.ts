@@ -7,10 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class todolistComponent implements OnInit{
     list: string[] = [];
-    input: HTMLInputElement;
+    task: string = '';
     
     constructor() {
-        this.input = document.getElementById("newitem") as HTMLInputElement;
     }
     
     ngOnInit(): void {
@@ -21,11 +20,10 @@ export class todolistComponent implements OnInit{
     }
 
     addNewItem(event: any) {
-        this.input = document.getElementById("newitem") as HTMLInputElement;
         if(event.key === 'Enter') {
-            this.list.push(this.input.value);
+            this.list.push(this.task);
             localStorage.setItem('list',this.list.join('.'));
-            this.input.value = '';
+            this.task = '';
         }
     }
 

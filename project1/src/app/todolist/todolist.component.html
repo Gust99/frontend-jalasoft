@@ -1,6 +1,6 @@
 
 <div class="container">
-    <input id="newitem" type="text" placeholder="What needs to be done?" (keydown)="addNewItem($event)">
+    <input id="newitem" type="text" placeholder="What needs to be done?" [(ngModel)]="task" (keydown)="addNewItem($event)">
 
     <hr *ngIf="list.length > 0">
     
