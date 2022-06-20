@@ -9,10 +9,17 @@ declare const dataPokemons: any;
     templateUrl: './pokedex.component.html',
     styleUrls: ['./pokedex.component.css']
 })
-export class PokedexComponent {
+export class PokedexComponent implements OnInit {
     src = '';
     name = '';
     list = dataPokemons.results;
+    dataLoaded: boolean | 'error' = false;
+
+    ngOnInit(): void {
+        this.list = dataPokemons.results;
+        // this.list = [];
+        this.dataLoaded = (this.list.length > 0);
+    }
 
     getImageSRC(url: string): string {
         let id = this.getID(url);

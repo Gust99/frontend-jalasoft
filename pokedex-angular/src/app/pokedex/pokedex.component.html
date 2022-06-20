@@ -1,3 +1,9 @@
 <div class="container">
     <pokemon *ngFor="let item of list, let i = index" [src]="getImageSRC(item.url)" [name]="item.name" [color]="getColor(item.url)"></pokemon>
 </div>
+
+<div class="switch-container" [ngSwitch]="dataLoaded">
+    <div class="case" *ngSwitchCase="true">Pokemons found: {{ list.length }}</div>
+    <div class="case" *ngSwitchCase="false">No pokemons found.</div>
+    <div class="case" *ngSwitchDefault>Error.</div>
+</div>
