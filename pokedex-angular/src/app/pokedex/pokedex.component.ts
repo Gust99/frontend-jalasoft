@@ -16,9 +16,14 @@ export class PokedexComponent implements OnInit {
     dataLoaded: boolean | 'error' = false;
 
     ngOnInit(): void {
-        this.list = dataPokemons.results;
-        // this.list = [];
-        this.dataLoaded = (this.list.length > 0);
+        try {
+            this.list = dataPokemons.results;
+            // this.list = [];
+            this.dataLoaded = (this.list.length > 0);
+            // throw new Error();
+        } catch(error) {
+            this.dataLoaded = 'error';
+        }
     }
 
     getImageSRC(url: string): string {
