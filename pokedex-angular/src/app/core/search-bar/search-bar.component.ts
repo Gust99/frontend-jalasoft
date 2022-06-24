@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input, Output } from "@angular/core";
 
 @Component({
     selector: 'search-bar',
@@ -6,5 +6,13 @@ import { Component } from "@angular/core";
     styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent {
+    @Input() list = [];
+    @Output() filteredList = [];
+    inputValue: string = '';
 
+    filter() {
+        this.filteredList = this.list.filter(pokemon => {
+            return (pokemon as any).name === this.inputValue;
+        });
+    }
 }
