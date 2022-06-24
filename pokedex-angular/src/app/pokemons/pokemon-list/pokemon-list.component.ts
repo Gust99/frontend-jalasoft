@@ -6,10 +6,10 @@ declare const dataPokemons: any;
 
 @Component({
     selector: 'pokedex',
-    templateUrl: './pokedex.component.html',
-    styleUrls: ['./pokedex.component.css']
+    templateUrl: './pokemon-list.component.html',
+    styleUrls: ['./pokemon-list.component.css']
 })
-export class PokedexComponent {
+export class PokemonListComponent {
     src = '';
     name = '';
     list = dataPokemons.results;
