@@ -9,6 +9,7 @@ export class PokemonComponent {
     @Input() src = '';
     @Input() name = '';
     @Input() color = '';
+    @Input() number = 0;
 
     getTextColor(): string {
         if(this.color === '#fbf6f6' || this.color === '#f0f060e6') {
