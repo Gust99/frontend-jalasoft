@@ -13,7 +13,10 @@ export class SearchBarComponent {
 
     filter() {
         this.filteredList = this.list.filter(pokemon => {
-            return (this.inputValue === '') ? true : ((pokemon as any).name as string).match(this.inputValue);
+            return (this.inputValue === '') 
+                ? true 
+                : ((pokemon as any).name as string)
+                    .match(new RegExp(this.inputValue,'i'));
         });
         this.outputEmitter.emit(this.filteredList);
     }

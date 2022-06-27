@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Pokemon } from 'src/assets/utils/types';
+import { PokemonService } from '../pokemons.service';
 
 declare function getPokemonImageUri(id: number): string;
 declare const pokemonColorMap: any;
@@ -8,10 +10,19 @@ declare const pokemonColorMap: any;
     templateUrl: './pokemon-list.component.html',
     styleUrls: ['./pokemon-list.component.css']
 })
-export class PokemonListComponent {
+export class PokemonListComponent implements OnInit {
     src = '';
     name = '';
+    offset = 0;
+    limit = 25;
+
     @Input() list: any[] = [];
+
+    constructor(private pokemonService: PokemonService) {}
+
+    ngOnInit(): void {
+        this.getPokemons();
+    }
 
     getImageSRC(url: string): string {
         let id = this.getID(url);
@@ -25,5 +36,13 @@ export class PokemonListComponent {
 
     getColor(url: string) {
         return pokemonColorMap[this.getID(url)];
+    }
+
+    getPokemons() {
+        this.pokemonService.getPokemonsList(this.offset, this.limit)
+        .subscribe(
+            (data: {results: Pokemon[]}) => this.list = [...this.list, ...data.results]
+        );
+        this.offset += this.limit;
     }
 }

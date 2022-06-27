@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { PokemonService } from './pokemons/pokemons.service';
 
 declare const dataPokemons: any;
 
@@ -8,6 +9,7 @@ declare const dataPokemons: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor(private pokemonService: PokemonService) {}
   title = 'pokedex-angular';
   list = dataPokemons.results;
   originalList = dataPokemons.results;

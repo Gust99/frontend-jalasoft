@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { PokemonModule } from './pokemons/pokemon.module';
 import { SearchBarComponent } from './core/search-bar/search-bar.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     PokemonModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
