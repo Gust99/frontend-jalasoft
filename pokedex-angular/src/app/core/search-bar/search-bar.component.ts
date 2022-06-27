@@ -1,4 +1,4 @@
-import { Component, Input, Output } from "@angular/core";
+import { Component, Input, Output,EventEmitter } from "@angular/core";
 
 @Component({
     selector: 'search-bar',
@@ -7,12 +7,14 @@ import { Component, Input, Output } from "@angular/core";
 })
 export class SearchBarComponent {
     @Input() list = [];
-    @Output() filteredList = [];
+    @Output() outputEmitter = new EventEmitter<any[]>();
+    filteredList = [];
     inputValue: string = '';
 
     filter() {
         this.filteredList = this.list.filter(pokemon => {
-            return (pokemon as any).name === this.inputValue;
+            return (this.inputValue === '') ? true : ((pokemon as any).name as string).match(this.inputValue);
         });
+        this.outputEmitter.emit(this.filteredList);
     }
 }

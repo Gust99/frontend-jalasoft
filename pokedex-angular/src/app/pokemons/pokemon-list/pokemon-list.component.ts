@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 declare function getPokemonImageUri(id: number): string;
 declare const pokemonColorMap: any;
-declare const dataPokemons: any;
 
 @Component({
     selector: 'pokedex',
@@ -12,7 +11,7 @@ declare const dataPokemons: any;
 export class PokemonListComponent {
     src = '';
     name = '';
-    list = dataPokemons.results;
+    @Input() list: any[] = [];
 
     getImageSRC(url: string): string {
         let id = this.getID(url);
