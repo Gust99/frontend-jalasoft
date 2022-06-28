@@ -14,7 +14,7 @@ export class PokemonListComponent implements OnInit {
     src = '';
     name = '';
     offset = 0;
-    limit = 25;
+    limit = 50;
 
     @Input() list: any[] = [];
 

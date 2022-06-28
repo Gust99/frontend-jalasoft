@@ -1,4 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { lastValueFrom, Observable } from 'rxjs';
+import { Pokemon } from 'src/assets/utils/types';
 import { PokemonService } from './pokemons/pokemons.service';
 
 declare const dataPokemons: any;
@@ -8,13 +10,18 @@ declare const dataPokemons: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  constructor(private pokemonService: PokemonService) {}
+export class AppComponent implements OnInit {
   title = 'pokedex-angular';
-  list = dataPokemons.results;
-  originalList = dataPokemons.results;
+  list: Pokemon[] = [];
+  originalList: Pokemon[] = [];
 
-  refreshList(newList: any) {
+  constructor(private pokemonService: PokemonService) {}
+
+  async ngOnInit(): Promise<void> {
+      this.originalList = (await lastValueFrom(this.pokemonService.getPokemonsList(0,50))).results;
+  }
+
+  refreshList(newList: Pokemon[]) {
     this.list = newList;
   }
 }

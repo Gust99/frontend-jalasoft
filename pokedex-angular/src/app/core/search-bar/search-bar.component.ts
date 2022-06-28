@@ -1,4 +1,5 @@
 import { Component, Input, Output,EventEmitter } from "@angular/core";
+import { Pokemon } from '../../../assets/utils/types';
 
 @Component({
     selector: 'search-bar',
@@ -6,9 +7,10 @@ import { Component, Input, Output,EventEmitter } from "@angular/core";
     styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent {
-    @Input() list = [];
-    @Output() outputEmitter = new EventEmitter<any[]>();
-    filteredList = [];
+    @Input() list: Pokemon[] = [];
+    @Output() outputEmitter = new EventEmitter<Pokemon[]>();
+
+    filteredList: Pokemon[] = [];
     inputValue: string = '';
 
     filter() {
