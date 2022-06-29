@@ -13,15 +13,13 @@ declare const pokemonColorMap: any;
 export class PokemonListComponent implements OnInit {
     src = '';
     name = '';
-    offset = 0;
-    limit = 50;
 
     @Input() list: any[] = [];
 
     constructor(private pokemonService: PokemonService) {}
 
     ngOnInit(): void {
-        this.getPokemons();
+        this.getPokemons(0, 50);
     }
 
     getImageSRC(url: string): string {
@@ -38,11 +36,11 @@ export class PokemonListComponent implements OnInit {
         return pokemonColorMap[this.getID(url)];
     }
 
-    getPokemons() {
-        this.pokemonService.getPokemonsList(this.offset, this.limit)
+    getPokemons(offset: number, limit: number) {
+        this.pokemonService.getPokemonsList(offset, limit)
         .subscribe(
             (data: {results: Pokemon[]}) => this.list = [...this.list, ...data.results]
         );
-        this.offset += this.limit;
+        // this.offset += this.limit;
     }
 }

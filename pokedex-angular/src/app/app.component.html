@@ -1,4 +1,4 @@
 
 <!-- <router-outlet></router-outlet> -->
-<search-bar (outputEmitter)="refreshList($event)" [list]="originalList"></search-bar>
+<search-bar (outputEmitter)="getList($event)" (outputOffset)="refreshOffset($event)" (outputLimit)="refreshLimit($event)" [list]="originalList"></search-bar>
 <pokedex [list]="list"></pokedex>

@@ -14,14 +14,30 @@ export class AppComponent implements OnInit {
   title = 'pokedex-angular';
   list: Pokemon[] = [];
   originalList: Pokemon[] = [];
+  offset: number = 0;
+  limit: number = 0;
 
   constructor(private pokemonService: PokemonService) {}
 
   async ngOnInit(): Promise<void> {
-      this.originalList = (await lastValueFrom(this.pokemonService.getPokemonsList(0,50))).results;
+    await this.getOriginalList();
   }
 
-  refreshList(newList: Pokemon[]) {
+  getList(newList: Pokemon[]) {
     this.list = newList;
+  }
+
+  async getOriginalList() {
+    this.originalList = (await lastValueFrom(this.pokemonService.getPokemonsList(this.offset,this.limit))).results;
+  }
+
+  async refreshOffset(offset: number = 0) {
+    this.offset = offset;
+    await this.getOriginalList();
+  }
+
+  async refreshLimit(limit: number = 50) {
+    this.limit = limit;
+    await this.getOriginalList();
   }
 }
