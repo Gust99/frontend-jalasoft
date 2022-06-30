@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { PokemonComponent } from './pokemon/pokemon.component';
 import { HttpClientModule } from "@angular/common/http";
+import { PokemonProfileComponent } from './profile/pokemon-profile.component';
 
 @NgModule({
     declarations: [
         PokemonListComponent,
-        PokemonComponent
+        PokemonComponent,
+        PokemonProfileComponent
     ],
     imports: [
         BrowserModule,

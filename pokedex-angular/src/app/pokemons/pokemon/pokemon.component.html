@@ -1,4 +1,4 @@
-<div class="container" [ngStyle]="{'backgroundColor': color}">
+<div class="container" [ngStyle]="{'backgroundColor': color}" (click)="goToPokemonProfile()">
     <span class="number">{{ number }}</span>
     <img class="img" [src]="src">
     <span class="name" [ngStyle]="{'color': getTextColor()}">{{ name }}</span>
