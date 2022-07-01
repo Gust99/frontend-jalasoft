@@ -30,14 +30,14 @@ export class SearchBarComponent {
     sendOffset() {
         const lastList = [...this.list];
         this.outputOffset.emit(this.offset || 0);
-        while(lastList === this.list) {}
+        setTimeout(() => {}, 500);
         this.filter();
     }
 
     sendLimit() {
         const lastList = [...this.list];
         this.outputLimit.emit(this.limit || 50);
-        while(lastList === this.list) {}
+        setTimeout(() => {}, 500);
         this.filter();
     }
 }
