@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Pokemon } from 'src/assets/utils/types';
 import { PokemonService } from '../../pokemons/pokemons.service';
+import { SearchBarComponent } from '../../core/search-bar/search-bar.component';
 
 declare const dataPokemons: any;
 
@@ -11,34 +11,44 @@ declare const dataPokemons: any;
   styleUrls: ['./pokemon-orchestrator.component.css']
 })
 export class PokemonOrchestratorComponent implements OnInit {
-  list: Pokemon[] = [];
-  originalList: Pokemon[] = [];
-  offset: number = 0;
-  limit: number = 0;
+  @ViewChild(SearchBarComponent) search!: SearchBarComponent;
 
-  constructor(private pokemonService: PokemonService) {}
+  segmentedList: Pokemon[] = [];
+  filteredList: Pokemon[] = [];
+  offset: number = 0;
+  limit: number = 50;
+  loading = false;
+
+  constructor(private pokemonService: PokemonService) {this.getSegmentedList();}
 
   async ngOnInit(): Promise<void> {
-    await this.getOriginalList();
+    await this.getSegmentedList();
   }
 
-  getList(newList: Pokemon[]) {
-    this.list = newList;
+  getFilteredList(newFilteredList: Pokemon[]) {
+    this.filteredList = newFilteredList;
   }
 
-  async getOriginalList() {
-    this.pokemonService.getPokemonsList(this.offset,this.limit).subscribe((res) => {
-      this.originalList = res.results;
-    });
+  async getSegmentedList() {
+    this.loading = true;
+
+    const response = await this.pokemonService
+                      .getPokemonsList(this.offset,this.limit);
+
+    this.segmentedList = response.results as any;
+
+    this.search.filter();
+
+    this.loading = false;
   }
 
   async refreshOffset(offset: number = 0) {
     this.offset = offset;
-    await this.getOriginalList();
+    await this.getSegmentedList();
   }
 
   async refreshLimit(limit: number = 50) {
     this.limit = limit;
-    await this.getOriginalList();
+    await this.getSegmentedList();
   }
 }

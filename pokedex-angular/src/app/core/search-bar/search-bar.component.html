@@ -1,7 +1,3 @@
 <div class="container">
     <input type="text" placeholder="Search by name" [(ngModel)]="inputValue" (keyup)="filter()">
-    <label for="offset">Offset: </label>
-    <input type="number" name="offset" id="offset" [min]="0" [(ngModel)]="offset" (ngModelChange)="sendOffset()">
-    <label for="offset">Limit: </label>
-    <input type="number" name="limit" id="limit" [min]="0" [(ngModel)]="limit" (ngModelChange)="sendLimit()">
 </div>

@@ -8,6 +8,7 @@ import { PokemonProfileComponent } from './profile/pokemon-profile.component';
 import { PokemonOrchestratorComponent } from './pokemon-orchestrator/pokemon-orchestrator.component';
 import { PokemonService } from './pokemons.service';
 import { SearchBarComponent } from '../core/search-bar/search-bar.component';
+import { PaginatorComponent } from '../core/paginator/paginator.component';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import { SearchBarComponent } from '../core/search-bar/search-bar.component';
         PokemonComponent,
         PokemonProfileComponent,
         PokemonOrchestratorComponent,
-        SearchBarComponent
+        SearchBarComponent,
+        PaginatorComponent
     ],
     imports: [
         BrowserModule,

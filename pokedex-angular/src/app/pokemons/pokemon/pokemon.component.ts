@@ -23,6 +23,6 @@ export class PokemonComponent {
     }
 
     goToPokemonProfile() {
-        this.router.navigate(['/pokedex/1']);
+        this.router.navigate(['/pokedex', this.number]);
     }
 }

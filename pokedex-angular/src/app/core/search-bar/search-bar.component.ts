@@ -9,13 +9,9 @@ import { Pokemon } from '../../../assets/utils/types';
 export class SearchBarComponent {
     @Input() list: Pokemon[] = [];
     @Output() outputEmitter = new EventEmitter<Pokemon[]>();
-    @Output() outputOffset = new EventEmitter<number>();
-    @Output() outputLimit = new EventEmitter<number>();
 
     filteredList: Pokemon[] = [];
     inputValue: string = '';
-    offset = 0;
-    limit = 50;
 
     filter() {
         this.filteredList = this.list.filter(pokemon => {
@@ -25,19 +21,5 @@ export class SearchBarComponent {
                     .match(new RegExp(this.inputValue,'i'));
         });
         this.outputEmitter.emit(this.filteredList);
-    }
-
-    sendOffset() {
-        const lastList = [...this.list];
-        this.outputOffset.emit(this.offset || 0);
-        setTimeout(() => {}, 500);
-        this.filter();
-    }
-
-    sendLimit() {
-        const lastList = [...this.list];
-        this.outputLimit.emit(this.limit || 50);
-        setTimeout(() => {}, 500);
-        this.filter();
     }
 }

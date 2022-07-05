@@ -1,1 +1,8 @@
-<h1>WORKS</h1>
+<h1>{{name}}</h1>
+<img src="" alt="">
+<label for="">Types:</label>
+<ul>
+    <li *ngFor="let item of types">{{item}}</li>
+</ul>
+
+<button (click)="goBack()">Back</button>

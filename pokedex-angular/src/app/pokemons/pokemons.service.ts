@@ -1,7 +1,4 @@
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { Pokemon } from "src/assets/utils/types";
 
 @Injectable({
     providedIn: 'root'
@@ -9,10 +6,25 @@ import { Pokemon } from "src/assets/utils/types";
 export class PokemonService {
     private api = 'https://pokeapi.co/api/v2'
 
-    constructor(private http: HttpClient) {}
+    constructor() {}
 
-    getPokemonsList(offset: number = 0, limit: number = 25) {
-        return this.http
-            .get(`${this.api}/pokemon?limit=${limit}&offset=${offset}`) as Observable<{results: Pokemon[]}>;
+    async getPokemonsList(offset: number = 0, limit: number = 50) {
+        return await fetch(`${this.api}/pokemon?limit=${limit}&offset=${offset}`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json());
+    }
+
+    async getPokemonData(id: string) {
+        return await fetch(`${this.api}/pokemon/${id}`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json());
     }
 }
