@@ -4,7 +4,15 @@ import { Injectable } from "@angular/core";
     providedIn: 'root'
 })
 export class PokemonService {
-    private api = 'https://pokeapi.co/api/v2'
+    private api = 'https://pokeapi.co/api/v2';
+
+    pokemonColorPool: {[x:string]: string} = {
+        '1': '#D6A2AD',
+        '2': '#C3B59F',
+        '3': '#A0AF84',
+        '4': '#668F80',
+        '5': '#4A6670'
+    }
 
     constructor() {}
 
@@ -26,5 +34,10 @@ export class PokemonService {
                 'Content-Type': 'application/json'
             }
         }).then(res => res.json());
+    }
+
+    getPokemonRandomColor() {
+        const index = Math.round(Math.random() * 4 + 1).toString();
+        return this.pokemonColorPool[index];
     }
 }

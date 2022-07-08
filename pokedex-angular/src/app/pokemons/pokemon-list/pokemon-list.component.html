@@ -1,4 +1,4 @@
 <div class="container">
     <span *ngIf="list.length === 0">Pokemons not found.</span>
-    <pokemon *ngFor="let item of list, let i = index" [number]="i+1" [src]="getImageSRC(item.url)" [name]="item.name" [color]="getColor(item.url)"></pokemon>
+    <pokemon *ngFor="let item of list, let i = index" [number]="getID(item.url)" [src]="getImageSRC(item.url)" [name]="item.name" [color]="getColor(item.url)"></pokemon>
 </div>

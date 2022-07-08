@@ -10,7 +10,7 @@ export class PokemonComponent {
     @Input() src = '';
     @Input() name = '';
     @Input() color = '';
-    @Input() number = 0;
+    @Input() number = '0';
 
     constructor(private router: Router) {}
 

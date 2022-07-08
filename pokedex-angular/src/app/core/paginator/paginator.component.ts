@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 @Component({
     selector: 'app-paginator',
@@ -8,15 +8,14 @@ import { Component, EventEmitter, Output } from "@angular/core";
 export class PaginatorComponent {
     @Output() outputOffset = new EventEmitter<number>();
     @Output() outputLimit = new EventEmitter<number>();
-    
-    offset = 0;
-    limit = 50;
+    @Input() inputOffset = 0;
+    @Input() inputLimit = 50;
 
     sendOffset() {
-        this.outputOffset.emit(this.offset || 0);
+        this.outputOffset.emit(this.inputOffset || 0);
     }
 
     sendLimit() {
-        this.outputLimit.emit(this.limit || 50);
+        this.outputLimit.emit(this.inputLimit || 50);
     }
 }
