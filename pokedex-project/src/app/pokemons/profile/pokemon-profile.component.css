@@ -1,0 +1,85 @@
+.container {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 5% auto 5% auto;
+    padding: 10px;
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 1px 2px 5px rgba(0,0,0,.3);
+    background-color: rgba(219, 202, 202, 0.1);
+    position: relative;
+}
+.container * {
+    width: 100%;
+}
+.name {
+    display: block;
+    font-size: 40px;
+    font-weight: 600;
+    margin: 5px;
+    text-align: center;
+}
+.label {
+    margin: 20px 0px 10px 0px;
+    font-weight: 600;
+}
+ul {
+    list-style-type: none;
+}
+ul li {
+    margin: 5px;
+    border-radius: 20px;
+    padding: 5px;
+    text-align: center;
+    color: white;
+
+}
+.data-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+.single-data-container {
+    max-width: 33%;
+}
+.id {
+    position: absolute;
+    bottom: 1%;
+    right: 1%;
+    padding: 5px;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 20px;
+    background-color: rgba(0,0,0,.05);
+    width: 20px !important;
+}
+.back {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,.05);
+    background-color: rgba(0, 0, 255,.4);
+    font-weight: 400;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+.back:hover {
+    background-color: rgba(0, 0, 255,.5);
+}
+.back-icon {
+    width: 10px;
+    margin: auto;
+}
+.back-text {
+    color: white;
+    margin: 5px 0px 3px 5px;
+    padding: auto;
+}

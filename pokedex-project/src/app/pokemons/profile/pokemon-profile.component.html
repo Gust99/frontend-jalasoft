@@ -1,0 +1,35 @@
+<div class="container">
+    <span class="name">{{name}}</span>
+    
+    <img class="img" [src]="imgSRC" alt="">
+    
+    <div class="data-container">
+        <div class="single-data-container">
+            <label class="label">Types</label>
+            <ul class="types">
+                <li *ngFor="let item of types" [ngStyle]="{backgroundColor: pokemonService.getPokemonRandomColor()}">{{item}}</li>
+            </ul>
+        </div>
+    
+        <div class="single-data-container">
+            <label class="label">Abilities</label>
+            <ul class="abilities">
+                <li *ngFor="let item of abilities" [ngStyle]="{backgroundColor: pokemonService.getPokemonRandomColor()}">{{item}}</li>
+            </ul>
+        </div>
+    
+        <div class="single-data-container">
+            <label class="label">Forms</label>
+            <ul class="forms">
+                <li *ngFor="let item of forms" [ngStyle]="{backgroundColor: pokemonService.getPokemonRandomColor()}">{{item}}</li>
+            </ul>
+        </div>
+    </div>
+    
+    <span class="id">{{id}}</span>
+</div>
+
+<button class="back" (click)="goBack()">
+    <img class="back-icon" src="../../../assets/angle-left-solid.svg" alt="">
+    <!-- <span class="back-text">Back</span> -->
+</button>

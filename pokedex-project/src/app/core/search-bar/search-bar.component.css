@@ -1,0 +1,16 @@
+input {
+    padding: 10px;
+    margin: auto;
+    border: 1px solid rgba(0,0,0,.3);
+    font-size: larger;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,.3);
+}
+.container {
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+}
+.container label {
+    margin: 5px 0px 5px 0px;
+}

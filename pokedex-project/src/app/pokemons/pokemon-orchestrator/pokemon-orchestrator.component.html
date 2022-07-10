@@ -1,0 +1,14 @@
+<div class="container">
+  <search-bar (outputEmitter)="getFilteredList($event)" [list]="segmentedList" #search></search-bar>
+
+  <app-paginator
+    (outputOffset)="refreshOffset($event)"
+    (outputLimit)="refreshLimit($event)"
+    [inputOffset]="offset"
+    [inputLimit]="limit"
+  ></app-paginator>
+
+  <div class="lds-dual-ring" [ngClass]="{hiddenLoader: !loading}"></div>
+</div>
+  <br><br><br><br><br><br>
+  <pokedex [list]="filteredList"></pokedex>
