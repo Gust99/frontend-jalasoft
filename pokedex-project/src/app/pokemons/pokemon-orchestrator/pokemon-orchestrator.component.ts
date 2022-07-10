@@ -10,7 +10,7 @@ declare const dataPokemons: any;
   templateUrl: './pokemon-orchestrator.component.html',
   styleUrls: ['./pokemon-orchestrator.component.css']
 })
-export class PokemonOrchestratorComponent implements OnInit, OnDestroy {
+export class PokemonOrchestratorComponent implements OnInit {
   @ViewChild(SearchBarComponent) search!: SearchBarComponent;
 
   segmentedList: Pokemon[] = [];
@@ -22,19 +22,7 @@ export class PokemonOrchestratorComponent implements OnInit, OnDestroy {
   constructor(private pokemonService: PokemonService) {this.getSegmentedList();}
 
   async ngOnInit(): Promise<void> {
-    this.filteredList = <Pokemon[]><unknown>JSON.parse(localStorage.getItem('filteredList') || '[]');
-    this.segmentedList = <Pokemon[]><unknown>JSON.parse(localStorage.getItem('segmentedList') || '[]');
-    this.offset = <number><unknown>JSON.parse(localStorage.getItem('offset') || '0');
-    this.limit = <number><unknown>JSON.parse(localStorage.getItem('limit') || '50');
-
     await this.getSegmentedList();
-  }
-
-  ngOnDestroy(): void {
-      localStorage.setItem('filteredList', JSON.stringify(this.filteredList));
-      localStorage.setItem('segmentedList', JSON.stringify(this.segmentedList));
-      localStorage.setItem('offset', JSON.stringify(this.offset));
-      localStorage.setItem('limit', JSON.stringify(this.limit));
   }
 
   getFilteredList(newFilteredList: Pokemon[]) {
@@ -49,6 +37,8 @@ export class PokemonOrchestratorComponent implements OnInit, OnDestroy {
 
     this.segmentedList = response.results as any;
 
+    this.search.list = this.segmentedList;
+    
     this.search.filter();
 
     this.loading = false;

@@ -14,6 +14,8 @@ export class SearchBarComponent {
     inputValue: string = '';
 
     filter() {
+        this.filteredList = [];
+        
         this.filteredList = this.list.filter(pokemon => {
             return (this.inputValue === '') 
                 ? true 

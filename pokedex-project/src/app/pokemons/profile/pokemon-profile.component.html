@@ -25,11 +25,18 @@
             </ul>
         </div>
     </div>
-    
+    <br><br><br>
     <span class="id">{{id}}</span>
 </div>
 
+<div class="chart-container">
+    <canvas baseChart
+      [data]="barChartData"
+      [options]="barChartOptions"
+      [type]="'bar'">
+    </canvas>
+</div>
+
 <button class="back" (click)="goBack()">
-    <img class="back-icon" src="../../../assets/angle-left-solid.svg" alt="">
-    <!-- <span class="back-text">Back</span> -->
+    <img class="back-icon" src="../../../assets/angles-left-solid.svg" alt="">
 </button>

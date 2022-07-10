@@ -10,6 +10,7 @@ import { PokemonService } from './pokemons.service';
 import { SearchBarComponent } from '../core/search-bar/search-bar.component';
 import { PaginatorComponent } from '../core/paginator/paginator.component';
 import { PokemonRoutingModule } from "./pokemon-routing.module";
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { PokemonRoutingModule } from "./pokemon-routing.module";
         BrowserModule,
         FormsModule,
         HttpClientModule,
-        PokemonRoutingModule
+        PokemonRoutingModule,
+        NgChartsModule
     ],
     exports: [],
     providers: [PokemonService]

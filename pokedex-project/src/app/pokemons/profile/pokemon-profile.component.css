@@ -4,14 +4,13 @@
     justify-content: center;
     align-items: center;
     margin: 5% auto 5% auto;
-    padding: 10px;
-    max-width: 300px;
+    max-width: 298px;
     border-radius: 10px;
     box-shadow: 1px 2px 5px rgba(0,0,0,.3);
-    background-color: rgba(219, 202, 202, 0.1);
+    background-color: white;
     position: relative;
 }
-.container * {
+.container > * {
     width: 100%;
 }
 .name {
@@ -29,21 +28,22 @@ ul {
     list-style-type: none;
 }
 ul li {
-    margin: 5px;
+    margin: 5px 5px 5px 0px;
     border-radius: 20px;
-    padding: 5px;
+    padding: 2px 4px 2px 4px;
     text-align: center;
     color: white;
-
+    max-width: 100%;
+    overflow: hidden;
 }
 .data-container {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-evenly;
+    flex-flow: row nowrap;
+    justify-content: space-around;
     align-items: flex-start;
 }
 .single-data-container {
-    max-width: 33%;
+    /* max-width: 33%; */
 }
 .id {
     position: absolute;
@@ -53,7 +53,7 @@ ul li {
     border: 1px solid rgba(0,0,0,.1);
     border-radius: 20px;
     background-color: rgba(0,0,0,.05);
-    width: 20px !important;
+    width: auto !important;
 }
 .back {
     position: absolute;
@@ -62,7 +62,7 @@ ul li {
     padding: 10px;
     border-radius: 20px;
     border: 1px solid rgba(0,0,0,.05);
-    background-color: rgba(0, 0, 255,.4);
+    background-color: rgba(0, 0, 255,.1);
     font-weight: 400;
     display: flex;
     flex-flow: row nowrap;
@@ -72,14 +72,17 @@ ul li {
     transition: all .2s ease-in-out;
 }
 .back:hover {
-    background-color: rgba(0, 0, 255,.5);
+    background-color: rgba(0, 0, 255,.2);
 }
 .back-icon {
     width: 10px;
     margin: auto;
 }
-.back-text {
-    color: white;
-    margin: 5px 0px 3px 5px;
-    padding: auto;
+.chart-container {
+    margin: auto;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 1px 2px 5px rgba(0,0,0,.3);
 }

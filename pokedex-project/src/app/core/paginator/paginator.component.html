@@ -1,11 +1,11 @@
 <div class="paginator-container">
     <div class="input-container">
         <label for="offset">Offset</label>
-        <input type="number" name="offset" id="offset" [min]="0" [(ngModel)]="inputOffset" (ngModelChange)="sendOffset()">    
+        <input type="number" name="offset" id="offset" [min]="0" [(ngModel)]="inputOffset" (input)="sendOffset()">    
     </div>
     
     <div class="input-container">
         <label for="offset">Limit</label>
-        <input type="number" name="limit" id="limit" [min]="0" [(ngModel)]="inputLimit" (ngModelChange)="sendLimit()">
+        <input type="number" name="limit" id="limit" [min]="0" [(ngModel)]="inputLimit" (input)="sendLimit()">
     </div>
 </div>

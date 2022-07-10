@@ -4,8 +4,6 @@
   <app-paginator
     (outputOffset)="refreshOffset($event)"
     (outputLimit)="refreshLimit($event)"
-    [inputOffset]="offset"
-    [inputLimit]="limit"
   ></app-paginator>
 
   <div class="lds-dual-ring" [ngClass]="{hiddenLoader: !loading}"></div>

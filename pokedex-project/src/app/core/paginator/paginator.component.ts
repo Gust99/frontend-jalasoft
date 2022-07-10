@@ -8,8 +8,8 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 export class PaginatorComponent {
     @Output() outputOffset = new EventEmitter<number>();
     @Output() outputLimit = new EventEmitter<number>();
-    @Input() inputOffset = 0;
-    @Input() inputLimit = 50;
+    inputOffset = 0;
+    inputLimit = 50;
 
     sendOffset() {
         this.outputOffset.emit(this.inputOffset || 0);
