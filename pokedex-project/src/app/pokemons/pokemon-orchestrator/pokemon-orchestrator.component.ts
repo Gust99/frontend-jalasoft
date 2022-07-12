@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Pokemon } from 'src/assets/utils/types';
 import { PokemonService } from '../../pokemons/pokemons.service';
 import { SearchBarComponent } from '../../core/search-bar/search-bar.component';
+import { ActivatedRoute } from '@angular/router';
 
 declare const dataPokemons: any;
 
@@ -19,10 +20,14 @@ export class PokemonOrchestratorComponent implements OnInit {
   limit: number = 50;
   loading = false;
 
-  constructor(private pokemonService: PokemonService) {this.getSegmentedList();}
+  constructor(
+    private pokemonService: PokemonService,
+    private router: ActivatedRoute  
+  ) {}
 
-  async ngOnInit(): Promise<void> {
-    await this.getSegmentedList();
+  ngOnInit(): void {
+    const pokemons = this.router.snapshot.data["pokemons"];
+    this.getPreloadSegmentedList(pokemons.results);
   }
 
   getFilteredList(newFilteredList: Pokemon[]) {
@@ -32,14 +37,22 @@ export class PokemonOrchestratorComponent implements OnInit {
   async getSegmentedList() {
     this.loading = true;
 
-    const response = await this.pokemonService
-                      .getPokemonsList(this.offset,this.limit);
+    let response = (await this.pokemonService
+      .getPokemonsList(this.offset,this.limit)).results as any;
 
-    this.segmentedList = response.results as any;
+    this.segmentedList = response
 
     this.search.list = this.segmentedList;
     
     this.search.filter();
+
+    this.loading = false;
+  }
+  
+  getPreloadSegmentedList(preloadPokemons?: Pokemon[]) {
+    this.loading = true;
+    
+    this.segmentedList = preloadPokemons || [];
 
     this.loading = false;
   }

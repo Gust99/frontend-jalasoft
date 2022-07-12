@@ -44,28 +44,26 @@ export class PokemonProfileComponent implements OnInit {
 
     constructor(
         private location: Location,
-        private route: ActivatedRoute,
+        private router: ActivatedRoute,
         public pokemonService: PokemonService    
     ) {}
 
-    async ngOnInit(): Promise<void> {
-        this.id = this.route.snapshot.paramMap.get('id') || '1';
-        await this.getPokemonData(this.id);
+    ngOnInit(): void {
+        const pokemon = this.router.snapshot.data["pokemon"];
+        this.getPokemonData(pokemon);
     }
 
     goBack() {
         this.location.back();
     }
 
-    async getPokemonData(id: string) {
-        const response = await this.pokemonService.getPokemonData(id);
-
-        this.setPokemonName(response);
-        this.setPokemonTypes(response);
-        this.setPokemonAbilities(response);
-        this.setPokemonForms(response);
-        this.setPokemonStats(response);
-        this.setPokemonImgURI(id);
+    getPokemonData(pokemon: any) {
+        this.setPokemonName(pokemon);
+        this.setPokemonTypes(pokemon);
+        this.setPokemonAbilities(pokemon);
+        this.setPokemonForms(pokemon);
+        this.setPokemonStats(pokemon);
+        this.setPokemonImgURI(pokemon.id);
         this.setChartData();
     }
 

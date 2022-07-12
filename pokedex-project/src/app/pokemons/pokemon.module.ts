@@ -11,6 +11,8 @@ import { SearchBarComponent } from '../core/search-bar/search-bar.component';
 import { PaginatorComponent } from '../core/paginator/paginator.component';
 import { PokemonRoutingModule } from "./pokemon-routing.module";
 import { NgChartsModule } from 'ng2-charts';
+import { PokemonsResolver } from './pokemon-orchestrator/pokemons.resolver';
+import { PokemonResolver } from './profile/pokemon.resolver';
 
 @NgModule({
     declarations: [
@@ -29,6 +31,6 @@ import { NgChartsModule } from 'ng2-charts';
         NgChartsModule
     ],
     exports: [],
-    providers: [PokemonService]
+    providers: [PokemonService, PokemonsResolver, PokemonResolver]
 })
 export class PokemonModule {}

@@ -1,4 +1,4 @@
-import { Component, Input, Output,EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Pokemon } from '../../../assets/utils/types';
 
 @Component({
@@ -6,12 +6,18 @@ import { Pokemon } from '../../../assets/utils/types';
     templateUrl: './search-bar.component.html',
     styleUrls: ['./search-bar.component.css']
 })
-export class SearchBarComponent {
+export class SearchBarComponent implements OnInit {
     @Input() list: Pokemon[] = [];
     @Output() outputEmitter = new EventEmitter<Pokemon[]>();
 
     filteredList: Pokemon[] = [];
     inputValue: string = '';
+
+    constructor() {}
+
+    ngOnInit(): void {
+        this.filter();
+    }
 
     filter() {
         this.filteredList = [];
