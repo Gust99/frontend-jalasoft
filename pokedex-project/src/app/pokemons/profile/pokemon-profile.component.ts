@@ -50,7 +50,8 @@ export class PokemonProfileComponent implements OnInit {
 
     ngOnInit(): void {
         const pokemon = this.router.snapshot.data["pokemon"];
-        this.getPokemonData(pokemon);
+        console.log(pokemon.evolutions);
+        this.getPokemonData(pokemon.profile);
     }
 
     goBack() {
@@ -58,6 +59,7 @@ export class PokemonProfileComponent implements OnInit {
     }
 
     getPokemonData(pokemon: any) {
+        this.id = pokemon.id;
         this.setPokemonName(pokemon);
         this.setPokemonTypes(pokemon);
         this.setPokemonAbilities(pokemon);

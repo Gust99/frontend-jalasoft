@@ -10,8 +10,10 @@ export class PokemonResolver implements Resolve<any> {
         private pokemonService: PokemonService,
     ) {}
     
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const pokemon = this.pokemonService.getPokemonData(route.paramMap.get('id') || '1');
-        return pokemon;
+    async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        const pokemonID = route.paramMap.get('id') || '1';
+        const profile = await this.pokemonService.getPokemonData(pokemonID);
+        const evolutions = await this.pokemonService.getPokemonEvolutions(pokemonID);
+        return {profile, evolutions};
     }
 }

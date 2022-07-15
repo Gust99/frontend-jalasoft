@@ -4,8 +4,13 @@ import { PokemonProfileComponent } from './profile/pokemon-profile.component';
 import { PokemonOrchestratorComponent } from './pokemon-orchestrator/pokemon-orchestrator.component';
 import { PokemonsResolver } from './pokemon-orchestrator/pokemons.resolver';
 import { PokemonResolver } from './profile/pokemon.resolver';
+import { PokemonFormComponent } from './pokemon-form/pokemon-form.component';
 
 const routes: Routes = [
+    {
+        path: 'pokedex/add',
+        component: PokemonFormComponent
+    },
     {
         path: 'pokedex',
         component: PokemonOrchestratorComponent,

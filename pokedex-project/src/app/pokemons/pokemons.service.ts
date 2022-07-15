@@ -40,4 +40,13 @@ export class PokemonService {
         const index = Math.round(Math.random() * 4 + 1).toString();
         return this.pokemonColorPool[index];
     }
+
+    async getPokemonEvolutions(id: string) {
+        return await fetch(`${this.api}/evolution-chain/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json());
+    }
 }
