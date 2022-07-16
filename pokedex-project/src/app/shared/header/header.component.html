@@ -1,12 +1,12 @@
 <div class="header-container">
-    <div class="logo">
-        <img class="image" src="" alt="">
+    <div class="logo-container">
+        <img class="poketitle" src="../../../assets//poketitle.png" (click)="goToPage('/homepage');">
     </div>
     <div class="navbar">
-        <ul class="list">
-            <li class="item">Home</li>
-            <li class="item">Pokedex</li>
-            <li class="item">Add</li>
+        <ul class="list" #list>
+            <li class="item" (click)="goToPage('/homepage')">Home</li>
+            <li class="item" (click)="goToPage('/pokedex/list')">Pokedex</li>
+            <li class="item" (click)="goToPage('/pokedex/add')">Add</li>
         </ul>
     </div>
 </div>

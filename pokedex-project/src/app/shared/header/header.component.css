@@ -1,0 +1,42 @@
+.header-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+    box-shadow: 2px 1px 5px rgba(0,0,0,.2);
+}
+.logo-container {
+    margin: 0px 30px;
+    padding: 10px;
+}
+.poketitle {
+    max-height: 50px;
+}
+.list {
+    list-style-type: none;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+.item {
+    margin: 30px;
+    padding: 10px;
+    border-radius: 4px;
+    color: #003a70;
+    transition: all .1s ease-out;
+}
+.item:hover {
+    background-color: #003a70;
+    color: white;
+    box-shadow: 1px 1px 3px #003a70;
+}
+.active {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: 2px solid #003a70;
+}
+.active:hover {
+    border-radius: 4px;
+}

@@ -14,11 +14,9 @@
 
 .number {
     position: absolute;
-    right: 10%;
+    right: 5%;
     top: 5%;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, .6);
-    padding: 10px;
-    color: black;
-    border: 1px solid rgba(0, 0, 0, .3);
+    border-radius: 5px;
+    background-color: rgba(0,0,0,.2);
+    color: white;
 }

@@ -25,4 +25,13 @@ export class PokemonComponent {
     goToPokemonProfile() {
         this.router.navigate(['/pokedex/list/', this.number]);
     }
+
+    addZerosToNumber() {
+        const numberOfZeros = 3 - this.number.length;
+        let zeros = '';
+        for(let i = 0; i < numberOfZeros; i++) {
+            zeros += '0';
+        }
+        return zeros;
+    }
 }
