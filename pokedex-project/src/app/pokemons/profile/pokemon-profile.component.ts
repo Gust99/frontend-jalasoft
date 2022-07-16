@@ -103,6 +103,13 @@ export class PokemonProfileComponent implements OnInit {
 
     setChartData() {
         this.barChartData.labels = this.stats.map((stat:any) => stat.label);
-        this.barChartData.datasets = [{ data: this.stats.map((stat:any) => stat.base), label: 'Stats' }];
+        this.barChartData.datasets = [
+            { 
+                data: this.stats.map((stat:any) => stat.base), 
+                label: 'Stats', 
+                backgroundColor: ['#003a70'],
+                hoverBackgroundColor: ['#003a70']
+            }
+        ];
     }
 }

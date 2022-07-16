@@ -1,40 +1,42 @@
-<div class="container">
-    <span class="name">{{name}}</span>
-    
-    <img class="img" [src]="imgSRC" alt="">
-    
-    <div class="data-container">
-        <div class="single-data-container">
-            <label class="label">Types</label>
-            <ul class="types">
-                <li *ngFor="let item of types" [ngStyle]="{backgroundColor: pokemonService.getPokemonRandomColor()}">{{item}}</li>
-            </ul>
+<div class="component-container">
+    <div class="card-container">
+        <span class="name">{{name}}</span>
+        
+        <img class="img" [src]="imgSRC" alt="">
+        
+        <div class="data-container">
+            <div class="single-data-container">
+                <label class="label">Types</label>
+                <ul class="types">
+                    <li *ngFor="let item of types" [ngStyle]="{backgroundColor: pokemonService.getPokemonRandomColor()}">{{item}}</li>
+                </ul>
+            </div>
+        
+            <div class="single-data-container">
+                <label class="label">Abilities</label>
+                <ul class="abilities">
+                    <li *ngFor="let item of abilities" [ngStyle]="{backgroundColor: pokemonService.getPokemonRandomColor()}">{{item}}</li>
+                </ul>
+            </div>
+        
+            <div class="single-data-container">
+                <label class="label">Forms</label>
+                <ul class="forms">
+                    <li *ngFor="let item of forms" [ngStyle]="{backgroundColor: pokemonService.getPokemonRandomColor()}">{{item}}</li>
+                </ul>
+            </div>
         </div>
-    
-        <div class="single-data-container">
-            <label class="label">Abilities</label>
-            <ul class="abilities">
-                <li *ngFor="let item of abilities" [ngStyle]="{backgroundColor: pokemonService.getPokemonRandomColor()}">{{item}}</li>
-            </ul>
-        </div>
-    
-        <div class="single-data-container">
-            <label class="label">Forms</label>
-            <ul class="forms">
-                <li *ngFor="let item of forms" [ngStyle]="{backgroundColor: pokemonService.getPokemonRandomColor()}">{{item}}</li>
-            </ul>
-        </div>
+        <br><br><br>
+        <span class="id">{{id}}</span>
     </div>
-    <br><br><br>
-    <span class="id">{{id}}</span>
-</div>
-
-<div class="chart-container">
-    <canvas baseChart
-      [data]="barChartData"
-      [options]="barChartOptions"
-      [type]="'bar'">
-    </canvas>
+    
+    <div class="chart-container">
+        <canvas baseChart
+          [data]="barChartData"
+          [options]="barChartOptions"
+          [type]="'bar'">
+        </canvas>
+    </div>
 </div>
 
 <button class="back" (click)="goBack()">
