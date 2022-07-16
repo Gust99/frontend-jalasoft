@@ -1,31 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PokemonProfileComponent } from './profile/pokemon-profile.component';
-import { PokemonOrchestratorComponent } from './pokemon-orchestrator/pokemon-orchestrator.component';
 import { PokemonsResolver } from './pokemon-orchestrator/pokemons.resolver';
 import { PokemonResolver } from './profile/pokemon.resolver';
 import { PokemonFormComponent } from './pokemon-form/pokemon-form.component';
 
 const routes: Routes = [
     {
-        path: 'pokedex/add',
-        component: PokemonFormComponent
+        path: 'add',
+        loadChildren: () => import('./pokemon-form/pokemon-form.module').then(m => m.PokemonFormModule)
     },
     {
-        path: 'pokedex',
-        component: PokemonOrchestratorComponent,
+        path: 'list',
+        loadChildren: () => import('./pokemon-orchestrator/pokemon-orchestrator.module').then(m => m.PokemonOrchestratorModule),
         resolve: {
             pokemons: PokemonsResolver
         }
     },
     { 
-        path: 'pokedex/:id', 
-        component: PokemonProfileComponent,
+        path: 'list/:id', 
+        loadChildren: () => import('./profile/pokemon-profile.module').then(m => m.PokemonProfileModule),
         resolve: {
             pokemon: PokemonResolver
-        } 
-    },
-    { path: '', redirectTo: '/pokedex', pathMatch: 'full' }
+        }
+    }
 ]
 
 @NgModule({
