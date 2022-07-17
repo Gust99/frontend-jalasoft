@@ -1,22 +1,58 @@
 <div class="form-container">
     <form class="form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-        <h2 class="title">Basic information</h2>
+        <h2 class="title">Pokemon form</h2>
         <div class="input-group">
             <label>Name</label>
             <input type="text" formControlName="pokemonName">
+            <div class="errors" *ngIf="!validInput('pokemonName')">
+                <small *ngIf="getInputErrors('pokemonName')['required']">Name is required</small>
+                <small *ngIf="getInputErrors('pokemonName')['maxlength']">No more than 20 characters</small>
+                <small *ngIf="getInputErrors('pokemonName')['minlength']">No less than 3 characters</small>
+                <small *ngIf="getInputErrors('pokemonName')['pattern']">Only letters and spaces</small>
+            </div>
         </div>
         <div class="input-group">
             <label>Description</label>
-            <input type="text" formControlName="pokemonDescription">
+            <textarea type="text" formControlName="pokemonDescription"></textarea>
+            <div class="errors" *ngIf="!validInput('pokemonDescription')">
+                <small *ngIf="getInputErrors('pokemonDescription')['required']">Description is required</small>
+                <small *ngIf="getInputErrors('pokemonDescription')['maxlength']">No more than 200 characters</small>
+                <small *ngIf="getInputErrors('pokemonDescription')['minlength']">No less than 20 characters</small>
+                <small *ngIf="getInputErrors('pokemonDescription')['pattern']">No rare symbols allowed</small>
+            </div>
+        </div>
+        <div class="input-group">
+            <label>Height</label>
+            <input type="number" formControlName="pokemonHeight" min="0">
+            <div class="errors" *ngIf="!validInput('pokemonHeight')">
+                <small *ngIf="getInputErrors('pokemonHeight')['required']">Height is required</small>
+                <small *ngIf="getInputErrors('pokemonHeight')['max']">No more than 200kg</small>
+                <small *ngIf="getInputErrors('pokemonHeight')['min']">No less than 0kg</small>
+            </div>
+        </div>
+        <div class="input-group">
+            <label>Weight</label>
+            <input type="number" formControlName="pokemonWeight" min="0">
+            <div class="errors" *ngIf="!validInput('pokemonWeight')">
+                <small *ngIf="getInputErrors('pokemonWeight')['required']">Weight is required</small>
+                <small *ngIf="getInputErrors('pokemonWeight')['max']">No more than 10000kg</small>
+                <small *ngIf="getInputErrors('pokemonWeight')['min']">No less than 0kg</small>
+            </div>
         </div>
         <div class="input-group">
             <label>Types</label>
             <input type="text" formControlName="pokemonTypes">
+            <div class="errors" *ngIf="!validInput('pokemonTypes')">
+                <small *ngIf="getInputErrors('pokemonTypes')['required']">Types are required</small>
+            </div>
         </div>
         <div class="input-group">
-            <label>Forms</label>
-            <input type="text" formControlName="pokemonForms">
+            <label>Abilities</label>
+            <input type="text" formControlName="pokemonAbilities">
+            <div class="errors" *ngIf="!validInput('pokemonAbilities')">
+                <small *ngIf="getInputErrors('pokemonAbilities')['required']">Abilities are required</small>
+            </div>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" [disabled]="!validForm()">Submit</button>
     </form>
 </div>

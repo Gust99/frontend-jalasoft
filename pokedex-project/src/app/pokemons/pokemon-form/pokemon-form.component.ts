@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'pokemon-form',
@@ -7,12 +7,45 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
     styleUrls: ['./pokemon-form.component.css']
 })
 export class PokemonFormComponent implements OnInit {
-    profileForm = new FormGroup({
-        pokemonName: new FormControl(''),
-        pokemonDescription: new FormControl(''),
-        pokemonTypes: new FormControl(''),
-        pokemonForms: new FormControl('')
+    profileForm = this.fb.group({
+        pokemonName: ['', [
+            Validators.required,
+            Validators.maxLength(20),
+            Validators.minLength(3),
+            Validators.pattern(/^[a-zA-Z\s]+$/)
+        ]],
+        pokemonDescription: ['', [
+            Validators.required,
+            Validators.maxLength(200),
+            Validators.minLength(20),
+            Validators.pattern(/^[a-zA-Z0-9\.\-\_\,\s]+$/)
+        ]],
+        pokemonHeight: [0, [
+            Validators.required,
+            Validators.min(0),
+            Validators.max(200)
+        ]],
+        pokemonWeight: [0, [
+            Validators.required,
+            Validators.min(0),
+            Validators.max(10000)
+        ]],
+        pokemonTypes: ['', [
+            Validators.required,
+        ]],
+        pokemonAbilities: ['', [
+            Validators.required
+        ]]
     });
+
+    errors = {
+        required: undefined,
+        min: undefined,
+        max: undefined,
+        maxlength: undefined,
+        minlength: undefined,
+        pattern: undefined
+    }
 
     constructor(private fb: FormBuilder) {}
 
@@ -30,5 +63,17 @@ export class PokemonFormComponent implements OnInit {
 
     onSubmit() {
         console.warn(this.profileForm.value);
+    }
+
+    validInput(inputName: string) {
+        return (this.profileForm.get(inputName)?.touched) ? this.profileForm.get(inputName)?.valid : true;
+    }
+
+    getInputErrors(inputName: string) {
+        return this.profileForm.get(inputName)?.errors || this.errors;
+    }
+
+    validForm() {
+        return this.profileForm.valid;
     }
 }
