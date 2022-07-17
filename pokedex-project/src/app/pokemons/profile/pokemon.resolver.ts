@@ -13,7 +13,8 @@ export class PokemonResolver implements Resolve<any> {
     async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const pokemonID = route.paramMap.get('id') || '1';
         const profile = await this.pokemonService.getPokemonData(pokemonID);
-        const evolutions = await this.pokemonService.getPokemonEvolutions(pokemonID);
-        return {profile, evolutions};
+        const species = await this.pokemonService.getPokemonSpecies(pokemonID);
+        const evolutions = await this.pokemonService.getPokemonEvolutions(species.evolution_chain.url);
+        return {profile, evolutions, description: species.flavor_text_entries[0].flavor_text};
     }
 }

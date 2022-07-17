@@ -41,8 +41,17 @@ export class PokemonService {
         return this.pokemonColorPool[index];
     }
 
-    async getPokemonEvolutions(id: string) {
-        return await fetch(`${this.api}/evolution-chain/${id}`, {
+    async getPokemonEvolutions(pokemon_evolution_url: string) {
+        return await fetch(pokemon_evolution_url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json());
+    }
+
+    async getPokemonSpecies(id: string) {
+        return await fetch(`${this.api}/pokemon-species/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

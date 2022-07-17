@@ -1,10 +1,8 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Pokemon } from 'src/assets/utils/types';
 import { PokemonService } from '../../pokemons/pokemons.service';
 import { SearchBarComponent } from '../../core/search-bar/search-bar.component';
 import { ActivatedRoute } from '@angular/router';
-
-declare const dataPokemons: any;
 
 @Component({
   selector: 'app-orchestrator',

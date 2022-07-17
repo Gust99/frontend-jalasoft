@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from "@angular/common";
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonService } from '../pokemons.service';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
+import { Subscription } from 'rxjs';
 
 declare function getPokemonImageUri(id: string): string;
 
@@ -11,7 +11,7 @@ declare function getPokemonImageUri(id: string): string;
     templateUrl: './pokemon-profile.component.html',
     styleUrls: ['./pokemon-profile.component.css']
 })
-export class PokemonProfileComponent implements OnInit {
+export class PokemonProfileComponent implements OnInit, OnDestroy {
     barChartOptions: ChartConfiguration['options'] = {
         responsive: true,
         scales: {
@@ -34,65 +34,77 @@ export class PokemonProfileComponent implements OnInit {
         datasets: []
     };
 
-    id: string = '1';
-    name = '';
+    id = '1';
+    name = 'Pokemon';
+    height = '0';
+    weight = '0';
+    imgSRC = '';
     types: string[] = [];
     abilities: string[] = [];
-    forms: string[] = [];
-    imgSRC: string = '';
     stats: {[x:string]: string}[] = [];
+    evolutions: {[x:string]: string}[] = [];
+    description = '';
+    subscription!: Subscription;
 
     constructor(
-        private location: Location,
-        private router: ActivatedRoute,
-        public pokemonService: PokemonService    
+        private route: ActivatedRoute,
+        public pokemonService: PokemonService,
+        private router: Router 
     ) {}
 
     ngOnInit(): void {
-        const pokemon = this.router.snapshot.data["pokemon"];
-        console.log(pokemon.evolutions);
-        this.getPokemonData(pokemon.profile);
+        this.subscription = this.route.paramMap.subscribe((params: any) => {
+            const pokemon = this.route.snapshot.data["pokemon"];
+            console.log(pokemon);
+            this.evolutions = [];
+            this.barChartData = {
+                labels: [],
+                datasets: []
+            };
+            this.description = pokemon.description;
+            this.setPokemonData(pokemon.profile);
+            this.setPokemonEvolutions(pokemon.evolutions.chain);
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
     }
 
     goBack() {
-        this.location.back();
+        this.router.navigate(['/pokedex/list']);
     }
 
-    getPokemonData(pokemon: any) {
-        this.id = pokemon.id;
-        this.setPokemonName(pokemon);
+    setPokemonData(pokemon: any) {
+        this.setPokemonBasicInfo(pokemon);
         this.setPokemonTypes(pokemon);
         this.setPokemonAbilities(pokemon);
-        this.setPokemonForms(pokemon);
         this.setPokemonStats(pokemon);
         this.setPokemonImgURI(pokemon.id);
         this.setChartData();
     }
 
-    setPokemonName(response: any) {
-        this.name = response.species.name;
+    setPokemonBasicInfo(pokemon: any) {
+        this.id = pokemon.id;
+        this.name = pokemon.species.name;
+        this.height = (pokemon.height / 10).toString();
+        this.weight = (pokemon.weight / 10).toString();
     }
 
-    setPokemonTypes(response: any) {
-        this.types = response.types.map((type: any) => {
+    setPokemonTypes(pokemon: any) {
+        this.types = pokemon.types.map((type: any) => {
             return type.type.name;
         });
     }
 
-    setPokemonAbilities(response: any) {
-        this.abilities = response.abilities.map((ability: any) => {
+    setPokemonAbilities(pokemon: any) {
+        this.abilities = pokemon.abilities.map((ability: any) => {
             return ability.ability.name;
         });
     }
 
-    setPokemonForms(response: any) {
-        this.forms = response.forms.map((form: any) => {
-            return form.name
-        });
-    }
-
-    setPokemonStats(response: any) {
-        this.stats = response.stats.map((stat: any) => {
+    setPokemonStats(pokemon: any) {
+        this.stats = pokemon.stats.map((stat: any) => {
             return { base: stat.base_stat, effort: stat.effort, label: stat.stat.name };
         });
     }
@@ -111,5 +123,35 @@ export class PokemonProfileComponent implements OnInit {
                 hoverBackgroundColor: ['#003a70']
             }
         ];
+    }
+
+    setPokemonEvolutions(evolution_chain: any) {
+        const evolutionID = evolution_chain.species.url
+                                .split(/[^0-9]+\//g).pop()
+                                .split('/')[0];
+        this.evolutions.push({
+            name: evolution_chain.species.name,
+            id: evolutionID,
+            imgSRC: getPokemonImageUri(evolutionID)
+        });
+        
+        if(evolution_chain.evolves_to.length === 0) {
+            return;
+        }
+        
+        this.setPokemonEvolutions(evolution_chain.evolves_to[0]);
+    }
+
+    addZerosToNumber(id: string) {
+        const numberOfZeros = 3 - id.toString().length;
+        let zeros = '';
+        for(let i = 0; i < numberOfZeros; i++) {
+            zeros += '0';
+        }
+        return zeros;
+    }
+
+    goToProfile(id: string) {
+        this.router.navigate(['/pokedex/list/',id]);
     }
 }

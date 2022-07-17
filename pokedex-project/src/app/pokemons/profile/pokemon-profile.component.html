@@ -1,41 +1,64 @@
 <div class="component-container">
-    <div class="card-container">
+    <div class="pokemon-title-container">
         <span class="name">{{name}}</span>
+        <span class="id">#{{addZerosToNumber(id)}}{{id}}</span>
+    </div>
+
+    <div class="pokemon-info-container">
+        <div class="image-evolutions-container">
+            <img class="img" [src]="imgSRC">
+
+            <p class="description">{{description}}</p>
+        </div>
         
-        <img class="img" [src]="imgSRC" alt="">
-        
-        <div class="data-container">
-            <div class="single-data-container">
-                <label class="label">Types</label>
-                <ul class="types">
-                    <li *ngFor="let item of types" [ngStyle]="{backgroundColor: pokemonService.getPokemonRandomColor()}">{{item}}</li>
-                </ul>
-            </div>
-        
-            <div class="single-data-container">
-                <label class="label">Abilities</label>
-                <ul class="abilities">
-                    <li *ngFor="let item of abilities" [ngStyle]="{backgroundColor: pokemonService.getPokemonRandomColor()}">{{item}}</li>
-                </ul>
-            </div>
-        
-            <div class="single-data-container">
-                <label class="label">Forms</label>
-                <ul class="forms">
-                    <li *ngFor="let item of forms" [ngStyle]="{backgroundColor: pokemonService.getPokemonRandomColor()}">{{item}}</li>
-                </ul>
+        <div class="evolutions-container">
+            <div 
+                class="evolution" 
+                *ngFor="let item of evolutions" 
+                [ngClass]="{'selected': item['id']==id}"
+                (click)="goToProfile(item['id'])"
+            >
+                <img [src]="item['imgSRC']">
+                <span>{{item['name']}}</span>
+                <span>#{{addZerosToNumber(item['id'])}}{{item['id']}}</span>
             </div>
         </div>
-        <br><br><br>
-        <span class="id">{{id}}</span>
-    </div>
+
+        <div class="data-container">
+            <div class="data-text-container">
+                <div class="single-data-container">
+                    <label class="label">Height</label>
+                    <span class="data">{{height}}m</span>
+                </div>
     
-    <div class="chart-container">
-        <canvas baseChart
-          [data]="barChartData"
-          [options]="barChartOptions"
-          [type]="'bar'">
-        </canvas>
+                <div class="single-data-container">
+                    <label class="label">Weight</label>
+                    <span class="data">{{weight}}kg</span>
+                </div>
+    
+                <div class="single-data-container">
+                    <label class="label">Type</label>
+                    <ul class="types" class="data">
+                        <li *ngFor="let item of types">{{item}}</li>
+                    </ul>
+                </div>
+            
+                <div class="single-data-container">
+                    <label class="label">Abilities</label>
+                    <ul class="abilities" class="data">
+                        <li *ngFor="let item of abilities">{{item}}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas baseChart
+                  [data]="barChartData"
+                  [options]="barChartOptions"
+                  [type]="'bar'">
+                </canvas>
+            </div>
+        </div>
     </div>
 </div>
 
