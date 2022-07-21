@@ -1,4 +1,42 @@
-#canvas {
-    width: 600px;
-    height: 600px;
+.container1 {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,.2);
+}
+.container1 > * {
+    margin: 20px;
+}
+.container1 > .info > * {
+    margin: 20px
+}
+.container1 > img {
+    max-width: 300px;
+}
+
+.container2 {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+    background-image: url('/assets/ash.jpg');
+    background-size: 400px;
+    background-repeat: repeat;
+    position: relative;
+}
+.container2::after {
+    content: ' ';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.6);
+    z-index: 0;
+}
+.container2 > .info {
+    z-index: 2;
+    color: white;
 }

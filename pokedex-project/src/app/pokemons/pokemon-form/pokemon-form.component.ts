@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { DialogComponent } from '../../core/dialog/dialog.component';
 
 @Component({
     selector: 'pokemon-form',
@@ -47,10 +49,17 @@ export class PokemonFormComponent implements OnInit {
         pattern: undefined
     }
 
-    constructor(private fb: FormBuilder) {}
+    constructor(
+        private fb: FormBuilder,
+        private dialog: MatDialog
+    ) {}
 
     ngOnInit(): void {
         // throw new Error('Method not implemented.');
+    }
+
+    openDialog(): void {
+        this.dialog.open(DialogComponent);
     }
 
     getTypes() {
@@ -63,6 +72,7 @@ export class PokemonFormComponent implements OnInit {
 
     onSubmit() {
         console.warn(this.profileForm.value);
+        this.openDialog();
     }
 
     validInput(inputName: string) {

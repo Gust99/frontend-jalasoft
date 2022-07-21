@@ -3,15 +3,19 @@ import { PokemonFormComponent } from './pokemon-form.component';
 import { CommonModule } from '@angular/common';
 import { PokemonFormRoutingModule } from './pokemon-form-routing.module';
 import { ReactiveFormsModule } from "@angular/forms";
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from '../../core/dialog/dialog.component';
 
 @NgModule({
     declarations: [
-        PokemonFormComponent
+        PokemonFormComponent,
+        DialogComponent
     ],
     imports: [
         CommonModule,
         PokemonFormRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatDialogModule
     ],
     exports: [],
     providers: []
